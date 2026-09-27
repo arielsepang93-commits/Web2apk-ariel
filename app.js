@@ -76,8 +76,15 @@ form.addEventListener(
             if (!response.ok) {
 
                 throw new Error(
-                    result.error ||
-                    "Gagal membuat APK"
+                    (result.error ||
+                        "Gagal membuat APK") +
+
+                    (
+                        result.detail
+                            ? "\n\nDetail GitHub:\n" +
+                              result.detail
+                            : ""
+                    )
                 );
             }
 
