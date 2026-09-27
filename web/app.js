@@ -1,80 +1,52 @@
-const form =
-    document.querySelector("#generator");
+const form = document.querySelector("#generator");
+const status = document.querySelector("#status");
 
-const status =
-    document.querySelector("#status");
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
+    status.textContent = "⏳ Mengirim build ke GitHub Actions...";
 
-form.addEventListener(
-    "submit",
-    async function (event) {
+    const data = Object.fromEntries(
+        new FormData(form).entries()
+    );
 
-        event.preventDefault();
+    try {
+        const response = await fetch("/api/generate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
 
-        status.textContent =
-            "⏳ Mengirim build ke GitHub Actions...";
+        const text = await response.text();
 
-
-        const data =
-            Object.fromEntries(
-                new FormData(form).entries()
-            );
-
+        let result;
 
         try {
-
-            const response =
-                await fetch(
-                    "/api/generate",
-                    {
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body:
-                            JSON.stringify(data)
-                    }
-                );
-
-
-            const result =
-                await response.json();
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    result.error ||
-                    "Gagal membuat APK"
-                );
-            }
-
-
-            status.textContent =
-                "✅ Build APK dimulai!\n\n" +
-
-                "Build ID: " +
-                result.buildId +
-
-                "\n\n" +
-
-                "Tunggu GitHub Actions " +
-                "menyelesaikan proses build.\n\n" +
-
-                "APK akan tersedia di " +
-                "GitHub Releases.";
-
+            result = JSON.parse(text);
+        } catch {
+            throw new Error(
+                `Server mengembalikan response bukan JSON.\n\n` +
+                `HTTP ${response.status}\n\n` +
+                text.slice(0, 500)
+            );
         }
 
-        catch (error) {
-
-            status.textContent =
-                "❌ Gagal: " +
-                error.message;
+        if (!response.ok) {
+            throw new Error(
+                result.error || "Gagal membuat APK"
+            );
         }
 
+        status.textContent =
+            "✅ Build APK dimulai!\n\n" +
+            "Build ID: " + result.buildId + "\n\n" +
+            result.message;
+
+    } catch (error) {
+        status.textContent =
+            "❌ Gagal:\n\n" +
+            error.message;
     }
-);
+});
