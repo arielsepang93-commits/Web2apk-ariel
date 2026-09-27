@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+TOOLS ARIEL - Web2APK
+</title>
+
+<link
+    rel="stylesheet"
+    href="/style.css">
+
+</head>
+
+<body>
+
+<main class="card">
+
+    <div class="logo">
+        TOOLS ARIEL
+    </div>
+
+    <h1>
+        WEB2APK
+    </h1>
+
+    <p>
+        Ubah website kamu menjadi aplikasi Android.
+    </p>
+
+    <form id="generator">
+
+        <label>
+
+            Nama Aplikasi
+
+            <input
+                type="text"
+                name="appName"
+                value="TOOLS ARIEL"
+                required>
+
+        </label>
+
+        <label>
+
+            Package Name
+
+            <input
+                type="text"
+                name="packageName"
+                value="com.ariel.tools"
+                required>
+
+        </label>
+
+        <label>
+
+            URL Website
+
+            <input
+                type="url"
+                name="url"
+                placeholder="https://example.com"
+                required>
+
+        </label>
+
+        <button type="submit">
+            GENERATE APK
+        </button>
+
+    </form>
+
+    <div id="status"></div>
+
+</main>
+
+<script src="/app.js"></script>
+
+</body>
+
+</html>
