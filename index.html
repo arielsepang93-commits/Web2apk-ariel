@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="theme-color"
+        content="#090b10">
+
+    <title>TOOLS ARIEL - WEB2APK</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css">
+</head>
+
+<body>
+
+    <main class="card">
+
+        <div class="logo">
+            TOOLS ARIEL
+        </div>
+
+        <h1>
+            WEB2APK
+        </h1>
+
+        <p class="description">
+            Ubah website kamu menjadi aplikasi Android
+            dengan mudah dan cepat.
+        </p>
+
+        <form id="generator">
+
+            <label for="appName">
+                Nama Aplikasi
+
+                <input
+                    id="appName"
+                    type="text"
+                    name="appName"
+                    value="TOOLS ARIEL"
+                    placeholder="Contoh: Ariel Tools"
+                    maxlength="50"
+                    required>
+            </label>
+
+            <label for="packageName">
+                Package Name
+
+                <input
+                    id="packageName"
+                    type="text"
+                    name="packageName"
+                    value="com.ariel.tools"
+                    placeholder="com.ariel.tools"
+                    required>
+
+                <small>
+                    Contoh: com.ariel.tools
+                </small>
+            </label>
+
+            <label for="url">
+                URL Website
+
+                <input
+                    id="url"
+                    type="url"
+                    name="url"
+                    placeholder="https://example.com"
+                    autocomplete="url"
+                    required>
+            </label>
+
+            <button
+                id="generateButton"
+                type="submit">
+
+                GENERATE APK
+
+            </button>
+
+        </form>
+
+        <div
+            id="status"
+            class="status"
+            aria-live="polite">
+        </div>
+
+        <div class="footer">
+            TOOLS ARIEL • WEB2APK
+        </div>
+
+    </main>
+
+    <script src="/app.js"></script>
+
+</body>
+
+</html>
